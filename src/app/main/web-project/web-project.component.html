@@ -1,0 +1,35 @@
+<nz-layout class="layout">
+  <nz-header>
+    <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;">
+      <li nz-menu-item>Сервисы</li>
+      <li nz-menu-item>Галерея</li>
+      <li nz-menu-item (click)="showConfirm()">
+        Проекты
+      </li>
+      <li nz-menu-item>Web-проекты</li>
+      <li nz-menu-item>Мобильные приложения</li>
+    </ul>
+  </nz-header>
+  <nz-content style="padding:0 50px;">
+    <div class="ant-modal-centered">
+      <h1>Галерея</h1>
+    </div>
+    <div *ngIf="!isLoading" class="all-images">
+      <ng-container *ngFor="let item of pageImages">
+        <div class="image">
+          <img srcset="{{item.urls.small}}">
+        </div>
+      </ng-container>
+      <div class="div-pag">
+        <button nz-button nzType="default" (click)="onPrev()"><i nz-icon type="left"></i>Prev</button>
+        <button nz-button nzType="default" (click)="onNext()">Next<i nz-icon type="right"></i></button>
+      </div>
+    </div>
+  </nz-content>
+  <nz-footer style="text-align: center;"></nz-footer>
+  <div *ngIf="isLoading" style="text-align: center;">
+    <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+  </div>
+</nz-layout>
+
+
